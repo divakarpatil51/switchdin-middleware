@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "switchdin-middleware"
+version = "0.0.1"
+description = "Middleware for handling communication between DER and Network operators"
+authors = ["Divakar Patil <divakarpatil35@gmail.com>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.110.0"
+uvicorn = "^0.27.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
