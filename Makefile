@@ -9,3 +9,9 @@ install-dependencies:
 
 start-app:
 	uvicorn src.main:app --reload
+
+create-db-revision:
+	alembic revision -m "$(MESSAGE)" --autogenerate
+
+apply-migrations:
+	alembic upgrade head
