@@ -32,3 +32,17 @@ class EnergyResource(Base):
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+
+class ExportLimit(Base):
+    __tablename__ = "export_limit"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    start_time = Column(DateTime())
+    end_time = Column(DateTime())
+    export_limit = Column(DECIMAL())
+
+    site_id = Column(Integer, ForeignKey("site.id"), primary_key=True)
+
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())

@@ -12,3 +12,7 @@ services:
     environment:
       - POSTGRES_USER=${DATABASE_USER:-dev}
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-pass}
+  key-value-store:
+    image: redis:6.0.9
+    ports:
+      - 127.0.0.1:6379:6379

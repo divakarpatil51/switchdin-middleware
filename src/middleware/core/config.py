@@ -44,6 +44,9 @@ class Settings(BaseSettings):
             path=f"{info.data.get('POSTGRES_DB') or ''}",
         )
 
+    REDIS_HOST: str = "localhost"
+    REDIS_PORT: int = 6379
+
     model_config = SettingsConfigDict(case_sensitive=True)
 
 
