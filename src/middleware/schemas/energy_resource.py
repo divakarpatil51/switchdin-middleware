@@ -18,3 +18,7 @@ class EnergyResourceRegistrationRequest(EnergyResource):
         if len(v) != 10:
             raise RequestValidationError("Site nmi should be of length 10")
         return v
+
+
+class EnergyResourceExportLimitResponse(BaseModel):
+    export_limit: Decimal
