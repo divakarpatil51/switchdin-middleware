@@ -15,3 +15,6 @@ create-db-revision:
 
 apply-migrations:
 	alembic upgrade head
+
+start-db:
+	docker-compose up
