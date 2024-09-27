@@ -1,0 +1,56 @@
+TODO
+
+# Temp files
+*.pyc
+__pycache__
+
+# Python packaging
+build/*
+./dist/*
+*.egg-info
+*.tar.gz
+
+# Python virtual environment folder
+# when created with venv module.
+.venv/
+
+# Environment variables for docker-compose.
+.env
+
+# Testing temp files
+.pytest_cache
+.mypy_cache
+.cache
+.idea/*
+htmlcov*
+htmlmypy
+.dmypy.json
+.testmondata
+.coverage*
+coverage.html
+coverage-unit.html
+coverage-integration.html
+coverage-functional.html
+coverage.xml
+coverage-unit.xml
+coverage-integration.xml
+coverage-functional.xml
+diff-cover*
+
+# DS_Store
+.DS_Store
+
+# IDEs
+.idea
+.vscode
+
+# File containing virtualenv name
+/.venv
+
+# Local blob storage
+**/.storage
+
+
+.nvim.lua
+pyrightconfig.json
+.envrc

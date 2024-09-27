@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  # sql-db:
+  #   image: postgres:15-alpine
+  #   command: postgres -c max_connections=200
+  #   ports:
+  #     - target: 5432
+  #       published: 5438
+  #       protocol: tcp
+  #       mode: host
+  #   environment:
+  #     - POSTGRES_USER=${DATABASE_USER:-dev}
+  #     - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-pass}
+  redis-broker-backend-db:
+    image: redis:6.0.9
+    ports:
+      - 127.0.0.1:6379:6379
