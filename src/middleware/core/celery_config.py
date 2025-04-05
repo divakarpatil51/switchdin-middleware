@@ -4,6 +4,6 @@ from middleware.core.config import settings
 
 
 def init():
-    app = cl.current_app
-    app.config_from_object(settings, namespace="CELERY")
+    app = cl.Celery("middleware")
+    app.config_from_object(settings)
     return app

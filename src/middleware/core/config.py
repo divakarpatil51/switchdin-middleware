@@ -4,7 +4,7 @@ import pydantic_settings as pd_settings
 
 
 class Settings(pd_settings.BaseSettings):
-    model_config = pd_settings.SettingsConfigDict(
+    model_config: pd_settings.SettingsConfigDict = pd_settings.SettingsConfigDict(
         env_file="../.env",
         extra="ignore",
     )
@@ -47,8 +47,8 @@ class Settings(pd_settings.BaseSettings):
     def TEST_DATABASE_URI(self) -> pd_core.MultiHostUrl | str:
         return f"sqlite:///{self.TEST_SQLITE_DB_PATH}"
 
-    CELERY_BROKER_URL: str = "redis://localhost:6379"
-    CELERY_RESULT_BACKEND: str = "redis://localhost:6379"
+    broker_url: str = "redis://localhost:6379"
+    result_backend: str = "redis://localhost:6379"
 
 
 settings = Settings()  # type: ignore
