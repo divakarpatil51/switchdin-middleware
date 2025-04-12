@@ -1,4 +1,5 @@
 import abc
+from typing_extensions import override
 
 import sqlalchemy as sa
 from sqlalchemy import orm
@@ -13,7 +14,7 @@ class AbstractUoW(abc.ABC):
     def __enter__(self) -> "AbstractUoW":
         return self
 
-    def __exit__(self, *arg):
+    def __exit__(self, *arg: list[object]) -> None:
         self.rollback()
 
     @abc.abstractmethod
@@ -35,15 +36,16 @@ DEFAULT_SESSION_FACTORY = orm.sessionmaker(
 class SqlAlchemyUoW(AbstractUoW):
     def __init__(
         self,
-        session_factory=DEFAULT_SESSION_FACTORY,
-        create_scoped_session=False,
+        session_factory: orm.sessionmaker[orm.Session] = DEFAULT_SESSION_FACTORY,
+        create_scoped_session: bool = False,
     ):
-        self.session_factory = session_factory
-        self.create_scoped_session = create_scoped_session
+        self.session_factory: orm.sessionmaker[orm.Session] = session_factory
+        self.create_scoped_session: bool = create_scoped_session
 
+    @override
     def __enter__(self):
         if self.create_scoped_session:
-            self.session = orm.scoped_session(
+            self.session: orm.scoped_session[orm.Session] = orm.scoped_session(
                 orm.sessionmaker(
                     bind=sa.create_engine(
                         settings.DATABASE_URI,  # type: ignore
@@ -52,15 +54,18 @@ class SqlAlchemyUoW(AbstractUoW):
             )
         else:
             self.session = self.session_factory()
-        self.sites = repository.SiteRepository(self.session)
+        self.sites: repository.SiteRepository = repository.SiteRepository(self.session)
         return super().__enter__()
 
-    def __exit__(self, *arg):
-        super().__exit__(arg)
+    @override
+    def __exit__(self, *arg: list[object]) -> None:
+        super().__exit__(*arg)
         self.session.close()
 
+    @override
     def commit(self):
         self.session.commit()
 
+    @override
     def rollback(self):
         self.session.rollback()

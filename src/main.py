@@ -10,5 +10,3 @@ orm.start_mappers()
 app = FastAPI()
 app.include_router(router=route.router)
 celery_app = celery_config.init()
-
-

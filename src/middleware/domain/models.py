@@ -1,6 +1,7 @@
 import dataclasses as dc
 import datetime as dt
 import decimal as d
+from typing_extensions import override
 
 # These are domain models
 
@@ -63,23 +64,31 @@ class ExportLimitControl:
         self.export_limit_in_watts: d.Decimal = export_limit_in_watts
 
 
+# Active Record Pattern or Data Mapper Pattern?
+# Active Record Pattern is a design pattern that is used to represent the data in the database as objects in the application.
+# Data Mapper Pattern is a design pattern that is used to separate the data from the business logic.
+# This is Data Mapper Pattern as the domain models are not responsible for their own persistence.
 class Site:
     def __init__(self, nmi: str):
         self.nmi: str = nmi
         self.energy_resources: set[EnergyResource] = set()
         self.export_limit_controls: set[ExportLimitControl] = set()
 
+    @override
     def __str__(self) -> str:
         return f"Site(nmi={self.nmi})"
 
+    @override
     def __repr__(self) -> str:
         return f"Site(nmi={self.nmi})"
 
+    @override
     def __eq__(self, other) -> bool:
         if not isinstance(other, Site):
             return False
         return other.nmi == self.nmi
 
+    @override
     def __hash__(self) -> int:
         return hash(self.nmi)
 

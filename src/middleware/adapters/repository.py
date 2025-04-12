@@ -15,7 +15,7 @@ class RepositoryProtocol(t.Protocol):
 
 class SiteRepository:
     def __init__(self, session: orm.Session):
-        self.session = session
+        self.session: orm.Session = session
 
     def add(self, site: models.Site):
         self.session.add(site)

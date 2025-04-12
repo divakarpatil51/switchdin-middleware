@@ -1,6 +1,6 @@
 [project]
 name = "switchdin-middleware"
-version = "0.1.0"
+version = "0.0.1"
 license = "GPL-3.0-or-later"
 description = "Middleware for handling communication between DER and Network operators"
 authors = [{name = "Divakar Patil", email = "divakarpatil35@gmail.com"},]
@@ -28,3 +28,10 @@ build-backend = "setuptools.build_meta"
 [tool.ruff.lint.pycodestyle]
 max-line-length = 100
 
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+exclude = [
+    "tests/",  # TOML basic string (double-quotes, backslash and other characters need escaping)
+]
